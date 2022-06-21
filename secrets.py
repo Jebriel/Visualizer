@@ -10,7 +10,7 @@ Step 5: past the curl command into terminal and copy output to 'stuff'
 '''
 
 spotify_user_id = 'tehag1'
-playlist_id = '6sZB9Sxg09K2cJVCD3pKrg'#'6AZmhUUSzUszsJa31LD47w'6sZB9Sxg09K2cJVCD3pKrg
+playlist_id = '6AZmhUUSzUszsJa31LD47w'#'6AZmhUUSzUszsJa31LD47w'6sZB9Sxg09K2cJVCD3pKrg
 
 base64 = 'NTNiZGNjZGE2NDEyNDU4MjljOWRhZWE2ZmM4NzhhYmI6ZWI4NDNkZTU2MTkyNDExZTlhZjk3OTc5Yjk2OWExZjM='
 

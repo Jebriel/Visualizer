@@ -12,6 +12,7 @@ class SaveSongs:
         self.tracks_name = ''
         self.num_tracks = 0
         self.track_dict = {}
+        self.track_analysis = {}
 
     def find_songs(self):
         #get songs in playlits
@@ -31,7 +32,7 @@ class SaveSongs:
         self.tracks_uri = self.tracks_uri.split(',')
         self.tracks_name = self.tracks_name.split(',')
         self.track_dict = {self.tracks_name[i]: [self.tracks_uri[i]] for i in range(self.num_tracks)}
-        return
+        return True 
         #self.tracks=self.tracks[:-1]
 
     def get_song_features(self):
@@ -47,10 +48,24 @@ class SaveSongs:
                                )
             self.track_dict[track].append(response.json())
             #print(response.json(),'-'*30)
+
+            nextRequest = requests.get('https://api.spotify.com/v1/audio-analysis/{}'.format(song),
+                                    headers = {'content-Type':'application/json',
+                                            'Authorization':'Bearer {}'.format(self.user_token)
+                                            }
+                                )
+            currA = nextRequest.json()
+            self.track_analysis[track]=[song,currA['sections'],currA['segments']]      
+            
         return
+
+ 
+
 
 a = SaveSongs()
 #a.find_songs()
 a.get_song_features()
-info = a.track_dict
-print(info['Succession (Main Title Theme) - Extended Intro Version'])
+#info = a.track_dict
+info = a.track_analysis
+
+print(a.tracks_name[1],info[a.tracks_name[1]])
