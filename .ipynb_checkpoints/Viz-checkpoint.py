@@ -59,36 +59,13 @@ class SaveSongs:
             
         return
 
-    def get_currently_playing(self, oauth):
-        query = 'https://api.spotify.com/v1/me/player/currently-playing'
-        response = requests.get(query,
-                                 headers = {'content-Type':'application/jsson',
-                                 'Authorization':'Bearer {}'.format(oauth)}
-                                 )
-        return response.json()
-    def go_live(self):
-        token = input('If you do not have an Oauth token available please go to https://developer.spotify.com/console/get-user-player/.\n Follow the steps and nter your token here: ')
-        currently_playing = ''
-        playing = True
-        while playing:
-            track = self.get_currently_playing(token)
-            if track['item']['uri'] != currently_playing:
-                currently_playing = track['item']['uri']
-                ##INTERFACING WITH VOD PLAYER
-                #GET URI OF WHAT CURENTLY PLAYING AND OPEN AND PLAY THE VOD
-                #for now just display currently playing info
-                name = track['item']['name']
-                artist = track['item']['artists'][0]['name']
-                album = track['item']['album']['name']
-                print('{}\n{}\n{}'.format(name,album,artist))
+ 
 
 
 a = SaveSongs()
-# #a.find_songs()
-# a.get_song_features()
-# #info = a.track_dict
-# info = a.track_analysis
+#a.find_songs()
+a.get_song_features()
+#info = a.track_dict
+info = a.track_analysis
 
-# print(a.tracks_name[1],info[a.tracks_name[1]])
-# #print(a.get_curretly_playing())
-a.go_live()
+print(a.tracks_name[1],info[a.tracks_name[1]])
